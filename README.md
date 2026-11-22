@@ -1,38 +1,47 @@
-# NEXUS SENTINEL (نیکسس سینٹینل)
+﻿---
+title: Nexus Sentinel API
+emoji: 🛡️
+colorFrom: gray
+colorTo: green
+sdk: docker
+app_port: 7860
+pinned: false
+---
+# NEXUS SENTINEL (Ù†ÛŒÚ©Ø³Ø³ Ø³ÛŒÙ†Ù¹ÛŒÙ†Ù„)
 ### AI-Driven Anti-Smuggling & Non-Custom-Paid (NCP) Vehicle Intelligence Platform
 
 Nexus Sentinel is an enterprise-grade intelligence platform engineered for law enforcement, customs authorities, and automotive forensic analysts. It monitors public vehicle listings, social media posts, and classified marketplaces to detect illegal Non-Custom-Paid (NCP) vehicles, cut-piece assemblies, tampered chassis numbers, and automotive smuggling rings across Pakistan.
 
 ---
 
-## 🏛 4-Phase System Architecture
+## ðŸ› 4-Phase System Architecture
 
 The project is structured and deployed across 4 progressive phases:
 
 ```
 nexus-sentinel/
-├── supabase/                     # Phase 1: Database schemas, migrations, RLS policies & seeds
-│   └── schema.sql
-├── backend/                      # Phases 2 & 3: FastAPI core, data ingestion, ML & LLM forensics
-│   ├── app/
-│   │   ├── api/                  # API routers (auth, posts, cases, benchmarks, lexicon)
-│   │   ├── core/                 # Config, security, database connection & LLM clients
-│   │   ├── models/               # Pydantic schemas & DB interfaces
-│   │   └── services/             # Slang matchers, price forensics, case escalation
-│   └── data/                     # Offline datasets & market benchmarks
-│       ├── pakwheels_used_cars.csv
-│       ├── pakwheels_market_benchmarks.csv
-│       └── slang_dataset.csv
-├── frontend/                     # Phase 4: React / Vite + Tailwind CSS + Lucide Dashboard
-│   ├── src/
-│   │   ├── components/           # UI widgets, case cards, risk meters, telemetry
-│   │   ├── pages/                # Live Feed, Case Management, Lexicon, Analytics
-│   │   └── services/             # Supabase & Backend API clients
-│   └── dist/                     # Production build artifacts
-├── .env.example                  # Environment configuration template
-├── .gitignore                    # Git tracking ignore rules
-├── .cursorignore                 # AI assistant indexing ignore rules
-└── README.md                     # Platform documentation
+â”œâ”€â”€ supabase/                     # Phase 1: Database schemas, migrations, RLS policies & seeds
+â”‚   â””â”€â”€ schema.sql
+â”œâ”€â”€ backend/                      # Phases 2 & 3: FastAPI core, data ingestion, ML & LLM forensics
+â”‚   â”œâ”€â”€ app/
+â”‚   â”‚   â”œâ”€â”€ api/                  # API routers (auth, posts, cases, benchmarks, lexicon)
+â”‚   â”‚   â”œâ”€â”€ core/                 # Config, security, database connection & LLM clients
+â”‚   â”‚   â”œâ”€â”€ models/               # Pydantic schemas & DB interfaces
+â”‚   â”‚   â””â”€â”€ services/             # Slang matchers, price forensics, case escalation
+â”‚   â””â”€â”€ data/                     # Offline datasets & market benchmarks
+â”‚       â”œâ”€â”€ pakwheels_used_cars.csv
+â”‚       â”œâ”€â”€ pakwheels_market_benchmarks.csv
+â”‚       â””â”€â”€ slang_dataset.csv
+â”œâ”€â”€ frontend/                     # Phase 4: React / Vite + Tailwind CSS + Lucide Dashboard
+â”‚   â”œâ”€â”€ src/
+â”‚   â”‚   â”œâ”€â”€ components/           # UI widgets, case cards, risk meters, telemetry
+â”‚   â”‚   â”œâ”€â”€ pages/                # Live Feed, Case Management, Lexicon, Analytics
+â”‚   â”‚   â””â”€â”€ services/             # Supabase & Backend API clients
+â”‚   â””â”€â”€ dist/                     # Production build artifacts
+â”œâ”€â”€ .env.example                  # Environment configuration template
+â”œâ”€â”€ .gitignore                    # Git tracking ignore rules
+â”œâ”€â”€ .cursorignore                 # AI assistant indexing ignore rules
+â””â”€â”€ README.md                     # Platform documentation
 ```
 
 ### Phase Breakdown
@@ -52,9 +61,9 @@ nexus-sentinel/
 3. **Phase 3: 3-Tier Investigation Workflow & Security Hardening**
    - Case creation and automated risk-based prioritization (Low, Medium, High, Critical).
    - Role-based case escalation:
-     - **Level 3 (Sulaman — Field Investigator):** Field verification and on-ground notes.
-     - **Level 2 (Abrar — Lead Analyst):** Case escalation, multi-post pattern clustering, and validation.
-     - **Level 1 (Miss Hiba — Super Admin):** Final legal verdict, warrant submission, and audit compliance.
+     - **Level 3 (Sulaman â€” Field Investigator):** Field verification and on-ground notes.
+     - **Level 2 (Abrar â€” Lead Analyst):** Case escalation, multi-post pattern clustering, and validation.
+     - **Level 1 (Miss Hiba â€” Super Admin):** Final legal verdict, warrant submission, and audit compliance.
    - Time-based One-Time Password (TOTP) two-factor authentication (2FA) and immutable audit logging.
 
 4. **Phase 4: Nexus Sentinel Dashboard & Single-Port Production Serving**
@@ -64,7 +73,7 @@ nexus-sentinel/
 
 ---
 
-## 📊 Dataset Placement
+## ðŸ“Š Dataset Placement
 
 All training benchmarks and reference dictionaries must be placed inside `/backend/data/`:
 
@@ -78,34 +87,34 @@ All training benchmarks and reference dictionaries must be placed inside `/backe
 
 ---
 
-## 🔒 3-Tier Operational Hierarchy
+## ðŸ”’ 3-Tier Operational Hierarchy
 
 ```
-       ┌────────────────────────────────────────────────────────┐
-       │   LEVEL 1: Super Admin (Miss Hiba)                     │
-       │   - Full platform governance & user role assignment    │
-       │   - Final enforcement verdicts & warrant approval      │
-       │   - Complete immutable audit log visibility            │
-       └───────────────────────────┬────────────────────────────┘
-                                   │ Escalations & Audits
-       ┌───────────────────────────▼────────────────────────────┐
-       │   LEVEL 2: Lead Analyst (Abrar)                        │
-       │   - Intelligence feed monitoring & batch post review   │
-       │   - Case assignment and escalation to Super Admin      │
-       │   - Lexicon curation & benchmark threshold tuning      │
-       └───────────────────────────┬────────────────────────────┘
-                                   │ Case Assignments
-       ┌───────────────────────────▼────────────────────────────┐
-       │   LEVEL 3: Field Investigator (Sulaman)                │
-       │   - On-ground physical verification & field notes      │
-       │   - Chassis number inspection & photo evidence upload  │
-       │   - Restricted strictly to assigned active cases       │
-       └────────────────────────────────────────────────────────┘
+       â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+       â”‚   LEVEL 1: Super Admin (Miss Hiba)                     â”‚
+       â”‚   - Full platform governance & user role assignment    â”‚
+       â”‚   - Final enforcement verdicts & warrant approval      â”‚
+       â”‚   - Complete immutable audit log visibility            â”‚
+       â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                                   â”‚ Escalations & Audits
+       â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+       â”‚   LEVEL 2: Lead Analyst (Abrar)                        â”‚
+       â”‚   - Intelligence feed monitoring & batch post review   â”‚
+       â”‚   - Case assignment and escalation to Super Admin      â”‚
+       â”‚   - Lexicon curation & benchmark threshold tuning      â”‚
+       â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+                                   â”‚ Case Assignments
+       â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â–¼â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
+       â”‚   LEVEL 3: Field Investigator (Sulaman)                â”‚
+       â”‚   - On-ground physical verification & field notes      â”‚
+       â”‚   - Chassis number inspection & photo evidence upload  â”‚
+       â”‚   - Restricted strictly to assigned active cases       â”‚
+       â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
 ```
 
 ---
 
-## 🚀 Quickstart & Setup (Phase 1)
+## ðŸš€ Quickstart & Setup (Phase 1)
 
 ### 1. Database Provisioning (Supabase)
 1. Open your [Supabase Dashboard](https://supabase.com/dashboard) and navigate to the **SQL Editor**.
@@ -129,3 +138,4 @@ In production, the application operates on a single port:
 # Production single-port launch (FastAPI serves built frontend)
 uvicorn backend.app.main:app --host 0.0.0.0 --port 8000
 ```
+
