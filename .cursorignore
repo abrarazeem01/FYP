@@ -1,0 +1,38 @@
+# Dependencies & Environments
+node_modules/
+venv/
+.venv/
+env/
+.env
+.env.*
+!.env.example
+
+# Python Caches & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+*.pyo
+
+# Build Artifacts
+dist/
+build/
+*.egg-info/
+
+# Large Datasets & Model Binaries
+*.csv
+*.tsv
+*.xlsx
+*.pkl
+*.pickle
+*.joblib
+*.h5
+*.pt
+*.pth
+*.onnx
+
+# Logs & System
+logs/
+*.log
+.DS_Store
+Thumbs.db

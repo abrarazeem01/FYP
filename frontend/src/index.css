@@ -1,0 +1,333 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------------------------------------------------
+   ULTRA-STEALTH CARBON & VOLT/CRIMSON EDITORIAL DESIGN SYSTEM
+   Palette:
+   - Primary Canvas Background: #060708 (Deep Carbon Obsidian)
+   - Elevated Chamfered Surfaces: #0d0f12 (with 1px solid rgba(255,255,255,0.08))
+   - Raised Surface: #14171c
+   - Primary Typography: #F4F6F8 (Crisp Titanium White)
+   - Secondary Typography: #8A94A6 (Muted Slate)
+   - Signature Accent 1: #D4FF00 (Acid Volt)
+   - Signature Accent 2: #FF2A4B (Telemetry Crimson)
+   ------------------------------------------------------------- */
+
+:root,
+html[data-theme="dark"],
+.dark {
+  --bg-primary: #060708;
+  --bg-secondary: #0d0f12;
+  --bg-card: #0d0f12;
+  --bg-card-elevated: #14171c;
+  --border-card: rgba(255, 255, 255, 0.08);
+  --border-specular: rgba(255, 255, 255, 0.18);
+  --border-interactive: rgba(255, 255, 255, 0.12);
+  --text-primary: #F4F6F8;
+  --text-secondary: #8A94A6;
+  --text-muted: #566170;
+  --accent-primary: #D4FF00;
+  --accent-crimson: #FF2A4B;
+  --accent-electric: #D4FF00;
+  --card-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.9);
+  --card-shadow-hover: 0 20px 50px -8px rgba(212, 255, 0, 0.22);
+  --input-bg: #0d0f12;
+  --input-border: rgba(255, 255, 255, 0.08);
+  --input-text: #F4F6F8;
+  --grid-line-color: rgba(255, 255, 255, 0.035);
+  --chart-grid: rgba(255, 255, 255, 0.06);
+  --chart-axis: #8A94A6;
+  --chart-tooltip-bg: #0d0f12;
+  --chart-tooltip-border: rgba(212, 255, 0, 0.45);
+  --chart-tooltip-text: #F4F6F8;
+}
+
+html[data-theme="light"],
+.light {
+  --bg-primary: #f4f6f8;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-elevated: #eef1f4;
+  --border-card: rgba(0, 0, 0, 0.08);
+  --border-specular: rgba(0, 0, 0, 0.16);
+  --border-interactive: rgba(0, 0, 0, 0.12);
+  --text-primary: #0a0d12;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
+  --accent-primary: #0a0d12;
+  --accent-crimson: #d92d20;
+  --accent-electric: #026aa2;
+  --card-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 16px 40px -8px rgba(0, 0, 0, 0.14);
+  --input-bg: #ffffff;
+  --input-border: rgba(0, 0, 0, 0.12);
+  --input-text: #0a0d12;
+  --grid-line-color: rgba(0, 0, 0, 0.04);
+  --chart-grid: rgba(0, 0, 0, 0.06);
+  --chart-axis: #4a5568;
+  --chart-tooltip-bg: #ffffff;
+  --chart-tooltip-border: rgba(0, 0, 0, 0.2);
+  --chart-tooltip-text: #0a0d12;
+  color-scheme: light;
+}
+
+html[data-theme="light"] body {
+  background-color: #f4f6f8;
+  color: #0a0d12;
+}
+
+html[data-theme="light"] .bg-\[\#060708\],
+html[data-theme="light"] .bg-\[\#090a0b\] {
+  background-color: #f4f6f8 !important;
+}
+
+html[data-theme="light"] .bg-\[\#0d0f12\],
+html[data-theme="light"] .bg-\[\#0d0f12\]\/95,
+html[data-theme="light"] .bg-\[\#0d0f12\]\/90,
+html[data-theme="light"] .bg-\[\#111315\] {
+  background-color: #ffffff !important;
+  color: #0a0d12 !important;
+}
+
+html[data-theme="light"] .bg-\[\#14171c\],
+html[data-theme="light"] .bg-\[\#181b1e\] {
+  background-color: #eef1f4 !important;
+}
+
+html[data-theme="light"] .text-\[\#F4F6F8\],
+html[data-theme="light"] .text-\[\#f7fafb\] {
+  color: #0a0d12 !important;
+}
+
+html[data-theme="light"] .text-\[\#8A94A6\],
+html[data-theme="light"] .text-\[\#8e98a0\] {
+  color: #4a5568 !important;
+}
+
+html[data-theme="light"] .border-white\/\[0\.08\],
+html[data-theme="light"] .border-white\/10,
+html[data-theme="light"] .border-white\/15 {
+  border-color: rgba(0, 0, 0, 0.09) !important;
+}
+
+/* Global Root Configuration */
+html {
+  background-color: #060708;
+  color: #F4F6F8;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #060708;
+  color: #F4F6F8;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  min-height: 100vh;
+  letter-spacing: -0.01em;
+}
+
+/* -------------------------------------------------------------
+   ARCHITECTURAL GEOMETRY & CHAMFERS
+   ------------------------------------------------------------- */
+
+/* Symmetrical chamfered corners */
+.chamfer-sm {
+  clip-path: polygon(
+    0 8px,
+    8px 0,
+    calc(100% - 8px) 0,
+    100% 8px,
+    100% calc(100% - 8px),
+    calc(100% - 8px) 100%,
+    8px 100%,
+    0 calc(100% - 8px)
+  );
+}
+
+.chamfer-md {
+  clip-path: polygon(
+    0 14px,
+    14px 0,
+    calc(100% - 14px) 0,
+    100% 14px,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    14px 100%,
+    0 calc(100% - 14px)
+  );
+}
+
+.chamfer-tr-bl {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 16px) 0,
+    100% 16px,
+    100% 100%,
+    16px 100%,
+    0 calc(100% - 16px)
+  );
+}
+
+.chamfer-badge {
+  clip-path: polygon(
+    0 4px,
+    4px 0,
+    calc(100% - 4px) 0,
+    100% 4px,
+    100% calc(100% - 4px),
+    calc(100% - 4px) 100%,
+    4px 100%,
+    0 calc(100% - 4px)
+  );
+}
+
+/* Crisp 1px Architectural Hairline Borders */
+.hairline-border {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hairline-border-active {
+  border: 1px solid rgba(212, 255, 0, 0.45);
+  box-shadow: 0 0 18px rgba(212, 255, 0, 0.18);
+}
+
+/* Subtle corner brackets [ ] on active containers in Acid Volt */
+.bracket-box {
+  position: relative;
+}
+
+.bracket-box::before,
+.bracket-box::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  pointer-events: none;
+  transition: all 0.25s ease;
+  z-index: 5;
+}
+
+.bracket-box::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--accent-primary);
+  border-left: 2px solid var(--accent-primary);
+}
+
+.bracket-box::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--accent-primary);
+  border-right: 2px solid var(--accent-primary);
+}
+
+/* -------------------------------------------------------------
+   KINETIC TYPOGRAPHY & HEADERS (Anton / Bebas Neue / Syne)
+   ------------------------------------------------------------- */
+.font-display-condensed,
+.font-display {
+  font-family: 'Anton', 'Bebas Neue', 'Syne', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.font-editorial-headline,
+.font-headline {
+  font-family: 'Anton', 'Bebas Neue', 'Syne', sans-serif;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* Staggered text-reveal animation helper */
+.text-reveal-mask {
+  overflow: hidden;
+  display: inline-block;
+}
+
+/* Scanline micro-animation */
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.animate-scanline {
+  animation: scanline 7s linear infinite;
+}
+
+/* Telemetry Equalizer Bars */
+@keyframes eqBar {
+  0%, 100% { height: 25%; }
+  50% { height: 95%; }
+}
+
+.eq-bar-1 { animation: eqBar 0.9s ease-in-out infinite; }
+.eq-bar-2 { animation: eqBar 0.7s ease-in-out infinite 0.15s; }
+.eq-bar-3 { animation: eqBar 1.1s ease-in-out infinite 0.3s; }
+.eq-bar-4 { animation: eqBar 0.6s ease-in-out infinite 0.1s; }
+.eq-bar-5 { animation: eqBar 0.85s ease-in-out infinite 0.25s; }
+
+/* Micro-dot matrix background */
+.bg-architectural {
+  background-color: var(--bg-primary);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Custom Performance Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #060708;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 0px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #D4FF00;
+}
+
+/* Universal Inputs & Selects Override */
+input[type="text"],
+input[type="url"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+  background-color: #0d0f12 !important;
+  color: #F4F6F8 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none !important;
+  border-color: #D4FF00 !important;
+  box-shadow: 0 0 12px rgba(212, 255, 0, 0.25) !important;
+}
+
+/* Recharts Universal Overrides */
+.recharts-cartesian-grid line {
+  stroke: rgba(255, 255, 255, 0.06) !important;
+}
+
+.recharts-text,
+.recharts-cartesian-axis-tick-value {
+  fill: #8A94A6 !important;
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 11px !important;
+}
+
+.recharts-default-tooltip {
+  background-color: #0d0f12 !important;
+  border: 1px solid rgba(212, 255, 0, 0.45) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.9) !important;
+  border-radius: 0px !important;
+  color: #F4F6F8 !important;
+}
