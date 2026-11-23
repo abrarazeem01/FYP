@@ -31,8 +31,8 @@ export const LoginPage: React.FC = () => {
   const [successMessage, setSuccessMessage] = useState('');
 
   // Sign In Inputs
-  const [signInEmail, setSignInEmail] = useState('abrar@nexus.io');
-  const [signInPassword, setSignInPassword] = useState('Nexus2026!');
+  const [signInEmail, setSignInEmail] = useState('');
+  const [signInPassword, setSignInPassword] = useState('');
 
   // Register Inputs
   const [regFullName, setRegFullName] = useState('');
@@ -239,7 +239,7 @@ export const LoginPage: React.FC = () => {
 
             {/* Sign In Form */}
             {activeTab === 'signin' ? (
-              <form onSubmit={handleSignInSubmit} className="space-y-4 font-mono text-xs">
+              <form onSubmit={handleSignInSubmit} autoComplete="off" className="space-y-4 font-mono text-xs">
                 <div>
                   <label className="block text-[#8A94A6] mb-1.5 uppercase font-bold text-[10px]">Email Address</label>
                   <div className="relative">
@@ -249,6 +249,7 @@ export const LoginPage: React.FC = () => {
                       value={signInEmail}
                       onChange={(e) => setSignInEmail(e.target.value)}
                       placeholder="abrar@nexus.io"
+                      autoComplete="off"
                       className="w-full pl-10 pr-4 py-3 bg-[#060708] border border-white/[0.08] text-xs font-mono text-[#F4F6F8] chamfer-sm focus:border-[#D4FF00]/50 outline-none transition-colors"
                       required
                     />
@@ -264,6 +265,7 @@ export const LoginPage: React.FC = () => {
                       value={signInPassword}
                       onChange={(e) => setSignInPassword(e.target.value)}
                       placeholder="••••••••••••"
+                      autoComplete="new-password"
                       className="w-full pl-10 pr-10 py-3 bg-[#060708] border border-white/[0.08] text-xs font-mono text-[#F4F6F8] chamfer-sm focus:border-[#D4FF00]/50 outline-none transition-colors"
                       required
                     />

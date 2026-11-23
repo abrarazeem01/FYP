@@ -68,53 +68,122 @@ OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3:8b")
 # ═══════════════════════════════════════════════════════════════════════════════
 # COMPREHENSIVE ROMAN URDU & PAKISTANI SMUGGLING LEXICON
 # ═══════════════════════════════════════════════════════════════════════════════
-ROMAN_URDU_LEXICON = {
-    # Customs Evasion / Non-Custom
-    "non-custom": {"weight": 10, "category": "customs_evasion", "label": "Non-Custom Vehicle"},
-    "non custom": {"weight": 10, "category": "customs_evasion", "label": "Non-Custom Vehicle"},
-    "non-custom-paid": {"weight": 10, "category": "customs_evasion", "label": "Non-Custom-Paid"},
-    "non custom paid": {"weight": 10, "category": "customs_evasion", "label": "Non-Custom-Paid"},
-    "ncp": {"weight": 10, "category": "customs_evasion", "label": "NCP Acronym"},
-    "without custom": {"weight": 10, "category": "customs_evasion", "label": "Without Customs Duty"},
-    "baghair custom": {"weight": 9, "category": "customs_evasion", "label": "Baghair Custom"},
-    "custom clear nahi": {"weight": 10, "category": "customs_evasion", "label": "Customs Uncleared"},
-    "custom duty nahi": {"weight": 10, "category": "customs_evasion", "label": "Customs Duty Unpaid"},
-    "duty unpaid": {"weight": 9, "category": "customs_evasion", "label": "Duty Unpaid"},
+# ═══════════════════════════════════════════════════════════════════════════════
+# COMPREHENSIVE ROMAN URDU, URDU SCRIPT & ANOMALY SLANG LEXICON
+# ═══════════════════════════════════════════════════════════════════════════════
 
-    # Structural & Identity Tampering
-    "cut-piece": {"weight": 10, "category": "structural_tampering", "label": "Cut-Piece Chassis"},
-    "cut piece": {"weight": 10, "category": "structural_tampering", "label": "Cut Piece Welded"},
-    "cutpiece": {"weight": 10, "category": "structural_tampering", "label": "Cutpiece Frame"},
-    "tampered chassis": {"weight": 10, "category": "identity_fraud", "label": "Chassis Tampering"},
-    "punch chassis": {"weight": 10, "category": "identity_fraud", "label": "Punch Chassis VIN"},
-    "chassis punch": {"weight": 10, "category": "identity_fraud", "label": "Chassis Punch VIN"},
-    "body change": {"weight": 9, "category": "structural_tampering", "label": "Swapped Body Shell"},
+def load_pure_anomaly_lexicon() -> Dict[str, Dict[str, Any]]:
+    """
+    Loads 100% pure anomaly lexicon from roman_urdu_slang_dataset.csv (307 rows),
+    indexing every slang_keyword and text_raw entry across Roman Urdu, Urdu Script,
+    and English.
+    """
+    base_lexicon: Dict[str, Dict[str, Any]] = {
+        # Customs Evasion / Non-Custom
+        "non-custom": {"weight": 10, "category": "customs_evasion", "label": "Non-Custom Vehicle"},
+        "non custom": {"weight": 10, "category": "customs_evasion", "label": "Non-Custom Vehicle"},
+        "non-custom-paid": {"weight": 10, "category": "customs_evasion", "label": "Non-Custom-Paid"},
+        "non custom paid": {"weight": 10, "category": "customs_evasion", "label": "Non-Custom-Paid"},
+        "ncp": {"weight": 10, "category": "customs_evasion", "label": "NCP Acronym"},
+        "without custom": {"weight": 10, "category": "customs_evasion", "label": "Without Customs Duty"},
+        "baghair custom": {"weight": 9, "category": "customs_evasion", "label": "Baghair Custom"},
+        "custom clear nahi": {"weight": 10, "category": "customs_evasion", "label": "Customs Uncleared"},
+        "custom duty nahi": {"weight": 10, "category": "customs_evasion", "label": "Customs Duty Unpaid"},
+        "duty unpaid": {"weight": 9, "category": "customs_evasion", "label": "Duty Unpaid"},
 
-    # Documentation Fraud
-    "without file": {"weight": 9, "category": "documentation_fraud", "label": "No Registration File"},
-    "baghair file": {"weight": 9, "category": "documentation_fraud", "label": "Baghair File"},
-    "file missing": {"weight": 8, "category": "documentation_fraud", "label": "Missing Legal File"},
-    "file nahi": {"weight": 8, "category": "documentation_fraud", "label": "No Paperwork"},
-    "open letter": {"weight": 7, "category": "documentation_fraud", "label": "Open Transfer Letter"},
-    "chalta phirta": {"weight": 8, "category": "documentation_fraud", "label": "Chalta Phirta (Running Only)"},
-    "chalta firta": {"weight": 8, "category": "documentation_fraud", "label": "Chalta Firta (Unregistered)"},
-    "duplicate book": {"weight": 7, "category": "documentation_fraud", "label": "Duplicate Logbook"},
+        # Structural & Identity Tampering
+        "cut-piece": {"weight": 10, "category": "structural_tampering", "label": "Cut-Piece Chassis"},
+        "cut piece": {"weight": 10, "category": "structural_tampering", "label": "Cut Piece Welded"},
+        "cutpiece": {"weight": 10, "category": "structural_tampering", "label": "Cutpiece Frame"},
+        "cut section": {"weight": 10, "category": "structural_tampering", "label": "Cut Section Frame"},
+        "tampered chassis": {"weight": 10, "category": "identity_fraud", "label": "Chassis Tampering"},
+        "punch chassis": {"weight": 10, "category": "identity_fraud", "label": "Punch Chassis VIN"},
+        "chassis punch": {"weight": 10, "category": "identity_fraud", "label": "Chassis Punch VIN"},
+        "body change": {"weight": 9, "category": "structural_tampering", "label": "Swapped Body Shell"},
 
-    # Origin & Smuggling Corridors
-    "kabuli": {"weight": 9, "category": "origin_smuggling", "label": "Afghan/Kabuli Import"},
-    "kabli": {"weight": 9, "category": "origin_smuggling", "label": "Afghan/Kabli Origin"},
-    "chaman border": {"weight": 9, "category": "origin_smuggling", "label": "Chaman Border Corridor"},
-    "chaman": {"weight": 7, "category": "origin_smuggling", "label": "Chaman Supply Route"},
-    "torkham": {"weight": 8, "category": "origin_smuggling", "label": "Torkham Pass Corridor"},
-    "border vehicle": {"weight": 9, "category": "origin_smuggling", "label": "Border Cross Unit"},
-    "border cross": {"weight": 9, "category": "origin_smuggling", "label": "Border Delivery Cross"},
-    "border delivery": {"weight": 8, "category": "origin_smuggling", "label": "Direct Border Delivery"},
+        # Documentation Fraud
+        "without file": {"weight": 9, "category": "documentation_fraud", "label": "No Registration File"},
+        "baghair file": {"weight": 9, "category": "documentation_fraud", "label": "Baghair File"},
+        "file missing": {"weight": 8, "category": "documentation_fraud", "label": "Missing Legal File"},
+        "file nahi": {"weight": 8, "category": "documentation_fraud", "label": "No Paperwork"},
+        "open letter": {"weight": 7, "category": "documentation_fraud", "label": "Open Transfer Letter"},
+        "chalta phirta": {"weight": 8, "category": "documentation_fraud", "label": "Chalta Phirta (Running Only)"},
+        "chalta firta": {"weight": 8, "category": "documentation_fraud", "label": "Chalta Firta (Unregistered)"},
+        "duplicate book": {"weight": 7, "category": "documentation_fraud", "label": "Duplicate Logbook"},
 
-    # Registration Evasion
-    "unregistered": {"weight": 6, "category": "registration_evasion", "label": "Unregistered Vehicle"},
-    "non registered": {"weight": 6, "category": "registration_evasion", "label": "Non-Registered"},
-    "without number": {"weight": 7, "category": "registration_evasion", "label": "Without Number Plates"},
-}
+        # Origin & Smuggling Corridors
+        "kabuli": {"weight": 9, "category": "origin_smuggling", "label": "Afghan/Kabuli Import"},
+        "kabli": {"weight": 9, "category": "origin_smuggling", "label": "Afghan/Kabli Origin"},
+        "chaman border": {"weight": 9, "category": "origin_smuggling", "label": "Chaman Border Corridor"},
+        "chaman clear": {"weight": 9, "category": "origin_smuggling", "label": "Chaman Clear Smuggled"},
+        "chaman": {"weight": 7, "category": "origin_smuggling", "label": "Chaman Supply Route"},
+        "torkham clear": {"weight": 9, "category": "origin_smuggling", "label": "Torkham Clear Smuggled"},
+        "torkham": {"weight": 8, "category": "origin_smuggling", "label": "Torkham Pass Corridor"},
+        "border vehicle": {"weight": 9, "category": "origin_smuggling", "label": "Border Cross Unit"},
+        "border cross": {"weight": 9, "category": "origin_smuggling", "label": "Border Delivery Cross"},
+        "border clear": {"weight": 9, "category": "origin_smuggling", "label": "Direct Border Clear"},
+        "border delivery": {"weight": 8, "category": "origin_smuggling", "label": "Direct Border Delivery"},
+
+        # General Anomaly / Illicit
+        "illegal": {"weight": 10, "category": "general_anomaly", "label": "Illegal Vehicle"},
+        "smuggled": {"weight": 10, "category": "origin_smuggling", "label": "Smuggled Vehicle"},
+
+        # Urdu Script Core Terms
+        "نان کسٹم پیڈ": {"weight": 10, "category": "customs_evasion", "label": "نان کسٹم پیڈ"},
+        "نان کسٹم": {"weight": 10, "category": "customs_evasion", "label": "نان کسٹم"},
+        "کٹ پیس": {"weight": 10, "category": "structural_tampering", "label": "کٹ پیس"},
+        "چمن کلیئر": {"weight": 9, "category": "origin_smuggling", "label": "چمن کلیئر"},
+        "بغیر کسٹم": {"weight": 10, "category": "customs_evasion", "label": "بغیر کسٹم"},
+        "تورخم کلیئر": {"weight": 9, "category": "origin_smuggling", "label": "تورخم کلیئر"},
+        "کابلی": {"weight": 9, "category": "origin_smuggling", "label": "کابلی"},
+        "کوئٹہ بارڈر کلیئر": {"weight": 9, "category": "origin_smuggling", "label": "کوئٹہ بارڈر کلیئر"}
+    }
+
+    lexicon = dict(base_lexicon)
+
+    # Locate pure anomaly dataset
+    candidates = [
+        DATA_DIR / "roman_urdu_slang_dataset.csv",
+        BASE_DIR / "roman_urdu_slang_dataset.csv",
+        Path("backend/data/roman_urdu_slang_dataset.csv"),
+        Path("roman_urdu_slang_dataset.csv")
+    ]
+    csv_path = None
+    for c in candidates:
+        if c.exists():
+            csv_path = c
+            break
+
+    if csv_path:
+        try:
+            df = pd.read_csv(csv_path, low_memory=False)
+            for _, row in df.iterrows():
+                kw = str(row.get("slang_keyword", "")).strip()
+                raw = str(row.get("text_raw", "")).strip()
+                cat = str(row.get("intent_category", "general_anomaly")).strip()
+                try:
+                    r_val = float(row.get("risk_score", 0.9))
+                    weight = max(5, min(10, int(round(r_val * 10 if r_val <= 1.0 else r_val / 10))))
+                except Exception:
+                    weight = 9
+
+                if kw and kw.lower() != "nan":
+                    lexicon[kw] = {"weight": weight, "category": cat, "label": kw}
+                    if kw.lower() != kw:
+                        lexicon[kw.lower()] = {"weight": weight, "category": cat, "label": kw}
+
+                # Index raw phrase if short (under 80 chars) to catch specific evasion phrases
+                if raw and raw.lower() != "nan" and len(raw) < 80:
+                    clean_raw = raw.strip()
+                    if clean_raw not in lexicon:
+                        lexicon[clean_raw] = {"weight": weight, "category": cat, "label": clean_raw}
+            logger.info(f"Loaded {len(lexicon)} anomaly lexicon markers from {csv_path.name}")
+        except Exception as e:
+            logger.warning(f"Error loading {csv_path}: {e}")
+
+    return lexicon
+
+ROMAN_URDU_LEXICON = load_pure_anomaly_lexicon()
 
 # ------------------------------------------------------------------------------
 # 1. DATASET LOADER & PREPROCESSING
